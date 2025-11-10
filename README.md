@@ -24,37 +24,51 @@ The backend runs locally at:
 The main technologies and tools used in this project are:
 
 Frontend Technologies:
+
 React.js, Vite, Tailwind CSS, React Router DOM, Axios, JavaScript (ES6), HTML5, CSS3  
 
 
 Backend Technologies: 
+
 Node.js, Express.js, Prisma ORM, MongoDB, JWT Authentication, Nodemailer (for OTP), REST API architecture  
 
 
 Development Tools:
+
 VS Code, Git, GitHub, npm (Node Package Manager), Postman for API testing, and GitHub Actions for version control and CI/CD.  
 
 
 Deployment Platforms (optional for future use):
+
 Vercel (for Frontend) and Render or Railway (for Backend).  
 
 
 To run the project locally on your Linux system:  
 
 1. Clone your GitHub repository
+   
    bash
+   
    git clone https://github.com/coding-lax/Aquarium-website-.git
+   
    cd Aquarium-website-
    
 2. Setup the backend
+   
    cd Backend
+   
    npm install
+   
    npm start
+   
    This will start the backend server at http://localhost:3000
 
 3. Setup the Frontend
+   
+  cd ../FrontEnd
 
-cd ../FrontEnd
-npm install
-npm run dev
-Once it compiles successfully, open http://localhost:5173 in your browser.
+  npm install
+
+  npm run dev
+
+  Once it compiles successfully, open http://localhost:5173 in your browser.
