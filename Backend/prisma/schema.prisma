@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
+  password  String
+  createdAt DateTime  @default(now())
+  cartItems CartItem[] // Relation to CartItem
+  orders    Order[]   // Relation to Order
+}
+
+
+
+model FishDetails {
+  id          Int       @id @default(autoincrement())
+  image       String
+  title       String
+  description String
+  price       Float
+  link        String
+  categoryId  Int?      // Foreign key to Category
+  cartItems   CartItem[] // Relation to CartItem
+  orders      Order[]   // Relation to Order
+
+  category    Category?   @relation(fields: [categoryId], references: [id]) // Relation to Category
+}
+
+model CartItem {
+  id        Int      @id @default(autoincrement())
+  userEmail String
+  fishId    Int
+  quantity  Int      @default(1)
+
+  user      User      @relation(fields: [userEmail], references: [email])
+  fish      FishDetails @relation(fields: [fishId], references: [id])
+}
+
+model Order {
+  id        Int      @id @default(autoincrement())
+  userEmail String
+  fishId    Int
+  quantity  Int
+  createdAt DateTime @default(now())
+  address   String   // New field for address
+
+  user      User      @relation(fields: [userEmail], references: [email])
+  fish      FishDetails @relation(fields: [fishId], references: [id])
+}
+
+ 
+model Category {
+  id          Int         @id @default(autoincrement())
+  name        String      @unique
+  fishDetails FishDetails[] // Relation to FishDetails
+}
